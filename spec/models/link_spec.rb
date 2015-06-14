@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Link, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { Link.new(long_url: "www.google.com") }
+  
+  it { should validate_presence_of(:long_url) }
+  it { should validate_presence_of(:short_url) }
 end

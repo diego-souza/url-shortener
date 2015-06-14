@@ -55,3 +55,8 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  # Matchers for easier testing
+  gem 'shoulda-matchers', :require => false
+end
+

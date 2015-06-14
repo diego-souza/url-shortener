@@ -32,6 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Gem to include Twitter Bootstrap's assets
+gem "twitter-bootstrap-rails"
+
 group :development, :test do
   # Testing Framework to replace Test::Unit
   gem 'rspec-rails', '~> 3.0'

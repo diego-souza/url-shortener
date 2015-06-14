@@ -38,6 +38,9 @@ gem "twitter-bootstrap-rails"
 # Gem for better form creation DSL
 gem 'simple_form'
 
+# Gem for pagination
+gem 'kaminari'
+
 group :development, :test do
   # Testing Framework to replace Test::Unit
   gem 'rspec-rails', '~> 3.0'

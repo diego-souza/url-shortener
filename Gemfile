@@ -35,6 +35,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Gem to include Twitter Bootstrap's assets
 gem "twitter-bootstrap-rails"
 
+# Gem for better form creation DSL
+gem 'simple_form'
+
 group :development, :test do
   # Testing Framework to replace Test::Unit
   gem 'rspec-rails', '~> 3.0'

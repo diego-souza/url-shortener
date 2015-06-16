@@ -60,10 +60,12 @@ group :development, :test do
   # Automatic test execution after file changes.
   gem 'guard-rspec'
   gem 'rb-fsevent' if `uname` =~ /Darwin/
+
+  gem 'pry'
 end
 
 group :test do
   # Matchers for easier testing
   gem 'shoulda-matchers', :require => false
+  gem 'factory_girl_rails'
 end
-

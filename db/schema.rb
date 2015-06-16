@@ -15,9 +15,11 @@ ActiveRecord::Schema.define(version: 20150614023506) do
 
   create_table "links", force: :cascade do |t|
     t.string   "long_url",   limit: 255
-    t.string   "short_url",  limit: 255
+    t.string   "code",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "links", ["code"], name: "index_links_on_code", unique: true, using: :btree
 
 end

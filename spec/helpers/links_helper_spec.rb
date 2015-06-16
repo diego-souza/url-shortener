@@ -11,5 +11,10 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe LinksHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "#code_url" do
+    it "should be the join of domain, port and code" do
+      request_double = double(domain: "localhost", port: 3000)
+      expect(helper.code_url(request_double, "ABC")).to eq("http://localhost:3000/ABC")
+    end
+  end
 end

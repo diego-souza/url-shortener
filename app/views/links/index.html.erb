@@ -15,7 +15,7 @@
     <% @links.each do |link| %>
       <tr>
         <td><%= link.long_url %></td>
-        <td><%= link_to link.code, link.code %></td>
+        <td><%= link_to code_url(request, link.code), link.code %></td>
         <td><%= link_to 'Show', link %></td>
         <td><%= link_to 'Edit', edit_link_path(link) %></td>
         <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>

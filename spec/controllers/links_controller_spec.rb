@@ -150,4 +150,19 @@ RSpec.describe LinksController, type: :controller do
     end
   end
 
+  describe "GET #redirect" do
+    it "redirect the requested code for @link.long_url" do
+      link = Link.create! valid_attributes
+      get :redirect, {:code => link.code}, valid_session
+      expect(response).to redirect_to(link.long_url)
+    end
+
+    it "redirect to not found page when code doesn't exist" do
+      link = Link.create! valid_attributes
+      get :redirect, {:code => "#{link.code}123"}, valid_session
+      expect(response).to redirect_to(links_url)
+      expect(flash.now[:alert]).to eq("Erro: Link não existe!")
+    end
+  end
+
 end

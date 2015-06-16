@@ -61,6 +61,16 @@ class LinksController < ApplicationController
     end
   end
 
+  def redirect
+    @link = Link.where(code: params[:code]).first
+    if @link
+      redirect_to @link.long_url
+    else
+      flash[:alert] = "Erro: Link não existe!"
+      redirect_to links_url
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link

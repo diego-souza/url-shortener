@@ -5,18 +5,18 @@ class Link < ActiveRecord::Base
   before_validation :generate_code, on: :create
   before_validation :url_normalizer
 
+  CODE_SIZE = 8
+
   def generate_code
-    code = random_string(8)
+    code = random_string(CODE_SIZE)
     while Link.where(code: code).any?
-      code = random_string(8)
+      code = random_string(CODE_SIZE)
     end
     self.code = code
   end
 
   def random_string(n)
-    string = ""
-    n.times{ string << (65 + rand(25)).chr }
-    string
+    n.downto(1).map { |i| (65 + rand(25)).chr }.join
   end
 
   def url_normalizer

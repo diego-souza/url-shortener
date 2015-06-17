@@ -38,6 +38,12 @@ RSpec.describe Link, type: :model do
       expect(second_subject.code).to eq("DEF")
     end
 
+    it "should generate a random code" do
+      allow(subject).to receive(:rand).and_return(0, 1, 2, 3, 4, 5, 6, 7)
+      subject.save!
+      expect(subject.code).to eq("ABCDEFGH")
+    end
+
     it "should add http:// to long_url if it doesn't have it already" do
       subject.long_url = "www.google.com"
       subject.save!
@@ -55,6 +61,5 @@ RSpec.describe Link, type: :model do
       subject.save!
       expect(subject.long_url).to eq(subject.long_url)
     end
-
   end
 end

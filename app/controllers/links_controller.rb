@@ -19,6 +19,7 @@ class LinksController < ApplicationController
         format.json { render :show, status: :created, location: @link }
       else
         @links = Link.all
+        flash.now[:error] = @link.errors
         format.html { render :index }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end

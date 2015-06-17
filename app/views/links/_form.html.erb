@@ -1,10 +1,8 @@
 <%= simple_form_for(@link, html: { class: "form-inline text-center" }) do |f| %>
-<%= f.error_notification %>
 
-<%= f.input :long_url, label: false, placeholder: "Your URL" do %>
+<%= f.input :long_url, label: false, error: false do %>
 <div class="input-group">
-  <div class="input-group-addon">http://</div>
-  <%= f.input_field :long_url, class: "form-control" %> 
+  <%= f.input_field :long_url, class: "form-control", placeholder: "Your URL" %> 
 </div>
 <% end %>
 

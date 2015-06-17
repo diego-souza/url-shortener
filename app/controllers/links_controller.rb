@@ -1,24 +1,11 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:destroy]
 
   # GET /links
   # GET /links.json
   def index
     @links = Link.all
-  end
-
-  # GET /links/1
-  # GET /links/1.json
-  def show
-  end
-
-  # GET /links/new
-  def new
     @link = Link.new
-  end
-
-  # GET /links/1/edit
-  def edit
   end
 
   # POST /links
@@ -28,24 +15,11 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
+        format.html { redirect_to links_url, notice: 'Link was successfully created.' }
         format.json { render :show, status: :created, location: @link }
       else
-        format.html { render :new }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /links/1
-  # PATCH/PUT /links/1.json
-  def update
-    respond_to do |format|
-      if @link.update(link_params)
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
-        format.json { render :show, status: :ok, location: @link }
-      else
-        format.html { render :edit }
+        @links = Link.all
+        format.html { render :index }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end

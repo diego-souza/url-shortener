@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>UrlShortener</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>UrlShortener</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-  <% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: name %>
-  <% end -%>
+    <%= bootstrap_flash %>
 
-<%= yield %>
+    <div class="conteiner-fluid">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h1 class="text-center">Url Shortener</h1>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
 
-</body>
+  </body>
 </html>

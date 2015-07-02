@@ -1,11 +1,10 @@
-<%= simple_form_for(@link) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(@link, html: { class: "form-inline text-center" }) do |f| %>
 
-  <div class="form-inputs">
-    <%= f.input :long_url %>
-  </div>
+<%= f.input :long_url, label: false, error: false do %>
+<div class="input-group">
+  <%= f.input_field :long_url, class: "form-control", placeholder: "Your URL" %> 
+</div>
+<% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%= f.button :submit, value: "Shorten URL", class: "bnt btn-primary" %>
 <% end %>

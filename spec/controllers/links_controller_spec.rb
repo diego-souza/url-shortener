@@ -38,28 +38,10 @@ RSpec.describe LinksController, type: :controller do
       get :index, {}, valid_session
       expect(assigns(:links)).to eq([link])
     end
-  end
 
-  describe "GET #show" do
-    it "assigns the requested link as @link" do
-      link = Link.create! valid_attributes
-      get :show, {:id => link.to_param}, valid_session
-      expect(assigns(:link)).to eq(link)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new link as @link" do
-      get :new, {}, valid_session
+    it "assigns new link to @link" do
+      get :index, {}, valid_session
       expect(assigns(:link)).to be_a_new(Link)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested link as @link" do
-      link = Link.create! valid_attributes
-      get :edit, {:id => link.to_param}, valid_session
-      expect(assigns(:link)).to eq(link)
     end
   end
 
@@ -77,9 +59,9 @@ RSpec.describe LinksController, type: :controller do
         expect(assigns(:link)).to be_persisted
       end
 
-      it "redirects to the created link" do
+      it "redirects to link list" do
         post :create, {:link => valid_attributes}, valid_session
-        expect(response).to redirect_to(Link.last)
+        expect(response).to redirect_to(links_url)
       end
     end
 
@@ -89,48 +71,11 @@ RSpec.describe LinksController, type: :controller do
         expect(assigns(:link)).to be_a_new(Link)
       end
 
-      it "re-renders the 'new' template" do
+      it "re-renders the 'index' template" do
+        link = Link.create! valid_attributes
         post :create, {:link => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) { FactoryGirl.attributes_for(:link) }
-
-      it "updates the requested link" do
-        link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => new_attributes}, valid_session
-        link.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested link as @link" do
-        link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => valid_attributes}, valid_session
-        expect(assigns(:link)).to eq(link)
-      end
-
-      it "redirects to the link" do
-        link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => valid_attributes}, valid_session
-        expect(response).to redirect_to(link)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the link as @link" do
-        link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => invalid_attributes}, valid_session
-        expect(assigns(:link)).to eq(link)
-      end
-
-      it "re-renders the 'edit' template" do
-        link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        expect(assigns(:links)).to eq([link])
+        expect(response).to render_template("index")
       end
     end
   end
